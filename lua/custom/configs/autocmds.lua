@@ -1,12 +1,3 @@
-require('Arduino-Nvim.lsp').setup()
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'arduino',
-  callback = function()
-    require 'Arduino-Nvim'
-  end,
-})
-
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.rs',
   callback = function()

@@ -37,4 +37,8 @@ return {
     root_dir = require('lspconfig.util').root_pattern('fort.ros', '.git'),
     capabilities = capabilities,
   },
+
+  asm_lsp = {
+    command = { 'asm-lsp' },
+  },
 }

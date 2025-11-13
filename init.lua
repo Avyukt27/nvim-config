@@ -1,7 +1,3 @@
-package.path = package.path .. ';/home/getplayed/.luarocks/share/lua/5.4/?.lua'
-package.path = package.path .. ';/home/getplayed/.luarocks/share/lua/5.4/?/init.lua'
-package.cpath = package.cpath .. ';/home/getplayed/.luarocks/lib/lua/5.4/?.so'
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -227,7 +223,7 @@ require('lazy').setup({
   -- Then, because we use the `opts` key (recommended), the configuration runs
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 
-  {                     -- Useful plugin to show you pending keybinds.
+  {
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
@@ -408,9 +404,6 @@ require('lazy').setup({
       { 'mason-org/mason.nvim', opts = {} },
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-      -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim',    opts = {} },
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
