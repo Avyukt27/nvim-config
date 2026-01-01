@@ -5,8 +5,9 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
--- vim.api.nvim_create_autocmd('VimEnter', {
---   callback = function()
---     vim.cmd "lua require('snacks').dim()"
---   end,
--- })
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    vim.cmd "lua require('snacks').toggle.inlay_hints():toggle()"
+    vim.cmd "lua require('snacks').toggle.indent():toggle()"
+  end,
+})

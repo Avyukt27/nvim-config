@@ -41,4 +41,22 @@ return {
   asm_lsp = {
     command = { 'asm-lsp' },
   },
+
+  tailwindcss = {},
+
+  arduino_language_server = {
+    cmd = {
+      'arduino-language-server',
+      '--cli',
+      '/usr/bin/arduino-cli',
+      '--cli-config',
+      os.getenv 'HOME' .. '/.arduino15/arduino-cli.yaml',
+      '--clangd',
+      os.getenv 'HOME' .. '/--clangd',
+      os.getenv 'HOME' .. '/.local/share/nvim/mason/bin/clangd',
+    },
+    root_dir = function(fname)
+      return vim.lsp.config.util.root_pattern '*.ino' (fname)
+    end,
+  },
 }
