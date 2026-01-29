@@ -32,10 +32,18 @@ end
 
 return {
   s({ trig = ';a', snippetType = 'autosnippet', desc = 'alpha', wordTrig = false }, { t '\\alpha' }),
-  s({ trig = ';b', snippetType = 'autosnippet', desc = 'alpha', wordTrig = false }, { t '\\beta' }),
-  s({ trig = ';g', snippetType = 'autosnippet', desc = 'alpha', wordTrig = false }, { t '\\gamma' }),
-  s({ trig = ';i', snippetType = 'autosnippet', desc = 'alpha', wordTrig = false }, { t '\\infty' }),
-  s({ trig = ';N', snippetType = 'autosnippet', desc = 'alpha', wordTrig = false }, { t '\\nabla' }),
+  s({ trig = ';b', snippetType = 'autosnippet', desc = 'beta', wordTrig = false }, { t '\\beta' }),
+  s({ trig = ';g', snippetType = 'autosnippet', desc = 'gamma', wordTrig = false }, { t '\\gamma' }),
+  s({ trig = ';d', snippetType = 'autosnippet', desc = 'delta', wordTrig = false }, { t '\\delta' }),
+  s({ trig = ';p', snippetType = 'autosnippet', desc = 'pi', wordTrig = false }, { t '\\pi' }),
+  s({ trig = ';f', snippetType = 'autosnippet', desc = 'phi', wordTrig = false }, { t '\\phi' }),
+  s({ trig = ';m', snippetType = 'autosnippet', desc = 'mu', wordTrig = false }, { t '\\mu' }),
+  s({ trig = ';i', snippetType = 'autosnippet', desc = 'infinity', wordTrig = false }, { t '\\infty' }),
+  s({ trig = ';N', snippetType = 'autosnippet', desc = 'nabla', wordTrig = false }, { t '\\nabla' }),
+  s({ trig = ';l', snippetType = 'autosnippet', desc = 'lambda', wordTrig = false }, { t '\\lambda' }),
+  s({ trig = ';t', snippetType = 'autosnippet', desc = 'theta', wordTrig = false }, { t '\\theta' }),
+  s({ trig = ';o', snippetType = 'autosnippet', desc = 'lowercase omega', wordTrig = false }, { t '\\omega' }),
+  s({ trig = ';O', snippetType = 'autosnippet', desc = 'uppercase omega', wordTrig = false }, { t '\\Omega' }),
 
   s(
     { trig = 'fig', snippetType = 'snippet', dscr = 'A basic figure environment' },
@@ -140,4 +148,31 @@ return {
     ),
     { show_condition = math }
   ),
+
+  s(
+    { trig = 'start', snippetType = 'snippet', desc = 'The beginning of a document' },
+    fmta(
+      [[
+  \documentclass{article}
+  <>
+
+  \title{<>}
+  \author{<>}
+  \date{\today}
+  \begin{document}
+    \maketitle
+    <>
+  \end{document}
+  ]],
+      {
+        i(1, 'packages'),
+        i(2, 'documentTitle'),
+        i(3, 'documentAuthor'),
+        i(4, 'documentbody'),
+      }
+    )
+  ),
+
+  s({ trig = 'para', snippetType = 'snippet', desc = 'A paragraph' }, fmta([[\paragraph{<>}]], { i(1, 'paragraphName') })),
+  s({ trig = 'sect', snippetType = 'snippet', desc = 'A section' }, fmta([[\section{<>}]], { i(1, 'sectionName') })),
 }
