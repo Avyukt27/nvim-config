@@ -667,9 +667,13 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'vimtex' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          vimtex = {
+            module = 'blink.compat.source',
+            name = 'vimtex',
+          },
         },
       },
 
