@@ -53,8 +53,8 @@ return {
         \centering
         \includegraphics[width=0.9\linewidth]{<>}
         \caption{
-            \textbf{<>}
-            <>
+          \textbf{<>}
+          <>
         }
         \label{fig:<>}
         \end{figure}
@@ -69,7 +69,7 @@ return {
     fmta(
       [[
         \begin{<>}
-            <>
+          <>
         \end{<>}
         ]],
       { i(1), i(2), rep(1) }
