@@ -13,6 +13,7 @@ vim.g.have_nerd_font = true
 --  For more options, you can see `:help option-list`
 
 vim.opt.whichwrap:append '<,>,[,]'
+vim.opt.shell = '/usr/bin/nu'
 
 -- Make line numbers default
 vim.o.number = true

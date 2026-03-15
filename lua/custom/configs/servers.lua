@@ -16,6 +16,7 @@ return {
           diagnosticMode = 'workspace',
           typeCheckingMode = 'off',
         },
+        disableOrganizeImports = true,
       },
     },
     capabilities = capabilities,
