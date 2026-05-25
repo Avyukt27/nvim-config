@@ -7,9 +7,7 @@ vim.keymap.set('i', '<C-Right>', '"<C-o>w"', opts)
 vim.keymap.set('i', '<C-Left>', '"<C-o>b"', opts)
 vim.keymap.set('i', '<C-BS>', '"<C-o>db"', opts)
 vim.keymap.set('i', '<C-Del>', '"<C-o>dw"', opts)
-vim.keymap.set('i', '<C-x>', function()
-  vim.notify('mathzone = ' .. vim.api.nvim_eval 'vimtex#syntax#in_mathzone()')
-end, opts)
+
 vim.keymap.set('n', '<leader>lp', function()
   local current_file = vim.fn.expand '%:p'
   local project_dir = vim.fn.expand '%:p:h'

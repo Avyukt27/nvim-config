@@ -4,7 +4,7 @@ return {
   build = 'make install_jsregexp',
   event = 'InsertEnter',
   config = function()
-    require('luasnip.loaders.from_lua').lazy_load { paths = './lua/custom/luasnip/' }
+    require('luasnip.loaders.from_lua').lazy_load { paths = './lua/luasnip/' }
     local ls = require 'luasnip'
     ls.setup {
       update_events = { 'TextChanged', 'TextChangedI' },

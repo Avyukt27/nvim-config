@@ -1,7 +1,10 @@
-local servers = require 'custom.configs.servers'
+local servers = require 'configs.servers'
 local capabilities = require('blink-cmp').get_lsp_capabilities()
 
+local myAugrp = vim.api.nvim_create_augroup('myAutocmds', { clear = true })
+
 vim.api.nvim_create_autocmd('BufWritePre', {
+  group = myAugrp,
   pattern = '*.rs',
   callback = function()
     vim.lsp.buf.format { async = false }
@@ -9,6 +12,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
+  group = myAugrp,
   pattern = 'vue',
   callback = function(args)
     local root_dir = vim.fs.root(args.buf, { 'package.json', 'tsconfig.json', 'jsconfig.json' })
@@ -29,11 +33,12 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = require 'custom.configs.treesitter-langs',
-  callback = function()
-    vim.treesitter.start()
-    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-    vim.wo.foldmethod = 'expr'
-    vim.wo.foldlevel = 99
+  group = myAugrp,
+  pattern = require 'configs.treesitter-langs',
+  callback = function(args)
+    local lang = vim.treesitter.language.get_lang(args.match)
+    if lang then
+      pcall(vim.treesitter.start, args.buf)
+    end
   end,
 })

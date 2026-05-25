@@ -8,8 +8,5 @@ return {
     require('bufferline').setup {}
     vim.keymap.set('n', '<leader>bn', '<cmd>bnext<CR>', { noremap = true, silent = true })
     vim.keymap.set('n', '<leader>bp', '<cmd>bprev<CR>', { noremap = true, silent = true })
-    vim.keymap.set('n', '<leader>bd', function()
-      Snacks.bufdelete()
-    end, { noremap = true, silent = true })
   end,
 }

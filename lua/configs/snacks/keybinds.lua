@@ -1,5 +1,4 @@
 return {
-  -- Top Pickers & Explorer
   {
     '<leader><space>',
     function()
@@ -17,9 +16,9 @@ return {
   {
     '<leader>/',
     function()
-      Snacks.picker.grep()
+      Snacks.picker.lines()
     end,
-    desc = 'Grep',
+    desc = 'Fuzzily search current buffer lines',
   },
   {
     '<leader>:',
@@ -42,7 +41,6 @@ return {
     end,
     desc = 'File Explorer',
   },
-  -- find
   {
     '<leader>fb',
     function()
@@ -85,7 +83,6 @@ return {
     end,
     desc = 'Recent',
   },
-  -- git
   {
     '<leader>gb',
     function()
@@ -135,7 +132,6 @@ return {
     end,
     desc = 'Git Log File',
   },
-  -- Grep
   {
     '<leader>sb',
     function()
@@ -165,7 +161,6 @@ return {
     desc = 'Visual selection or word',
     mode = { 'n', 'x' },
   },
-  -- search
   {
     '<leader>s"',
     function()
@@ -313,7 +308,6 @@ return {
     end,
     desc = 'Colorschemes',
   },
-  -- LSP
   {
     'gd',
     function()
@@ -364,7 +358,6 @@ return {
     end,
     desc = 'LSP Workspace Symbols',
   },
-  -- Other
   {
     '<leader>z',
     function()
@@ -437,18 +430,34 @@ return {
     desc = 'Dismiss All Notifications',
   },
   {
-    '<c-/>',
+    '<c-\\>',
     function()
-      Snacks.terminal()
+      Snacks.terminal.toggle(nil, {
+        win = {
+          position = 'float',
+          border = 'rounded',
+          width = 0.9,
+          height = 0.85,
+        },
+      })
     end,
+    mode = { 'n', 't' },
     desc = 'Toggle Terminal',
   },
   {
     '<c-_>',
     function()
-      Snacks.terminal()
+      Snacks.terminal.toggle(nil, {
+        win = {
+          position = 'float',
+          border = 'rounded',
+          width = 0.9,
+          height = 0.85,
+        },
+      })
     end,
-    desc = 'which_key_ignore',
+    mode = { 'n', 't' },
+    desc = 'Toggle Terminal (fallback)',
   },
   {
     ']]',

@@ -6,12 +6,12 @@ return {
   },
   config = function()
     require('mason-null-ls').setup {
-      ensure_installed = require 'custom.configs.none-ls.ensure-installed',
+      ensure_installed = require 'configs.none-ls.ensure-installed',
       automatic_installation = true,
     }
 
     local null_ls = require 'null-ls'
-    local sources = require 'custom.configs.none-ls.sources'
+    local sources = require 'configs.none-ls.sources'
     local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
     null_ls.setup {
       sources = sources,
@@ -22,7 +22,13 @@ return {
             group = augroup,
             buffer = bufnr,
             callback = function()
-              vim.lsp.buf.format { async = false }
+              vim.lsp.buf.format {
+                bufnr = bufnr,
+                async = false,
+                filter = function(f_client)
+                  return f_client.name ~= 'basedpyright' and f_client.name ~= 'ts_ls' and f_client.name ~= 'vue_ls'
+                end,
+              }
             end,
           })
         end

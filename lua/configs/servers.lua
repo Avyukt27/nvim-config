@@ -2,13 +2,26 @@ local capabilities = require('blink-cmp').get_lsp_capabilities()
 
 return {
   clangd = {
+    capabilities = capabilities,
     root_dir = require('lspconfig.util').root_pattern 'CMakeLists.txt',
     cmd = { 'clangd' },
     filetypes = { 'c', 'cpp' },
+  },
+
+  ruff = {
     capabilities = capabilities,
+    init_options = {
+      settings = {
+        lint = {
+          select = { 'F', 'E', 'W', 'I', 'UP', 'B', 'N', 'A', 'PIE', 'C4', 'SIM', 'RET', 'ICN', 'TCH', 'ANN' },
+          extendSelect = { 'I' },
+        },
+      },
+    },
   },
 
   basedpyright = {
+    capabilities = capabilities,
     root_dir = require('lspconfig.util').root_pattern('pyproject.toml', '.git'),
     settings = {
       basedpyright = {
@@ -19,10 +32,10 @@ return {
         disableOrganizeImports = true,
       },
     },
-    capabilities = capabilities,
   },
 
   lua_ls = {
+    capabilities = capabilities,
     root_dir = require('lspconfig.util').root_pattern('lua', '.git'),
     settings = {
       Lua = {
@@ -31,12 +44,11 @@ return {
         },
       },
     },
-    capabilities = capabilities,
   },
 
   fortls = {
-    root_dir = require('lspconfig.util').root_pattern('fort.ros', '.git'),
     capabilities = capabilities,
+    root_dir = require('lspconfig.util').root_pattern('fort.ros', '.git'),
   },
 
   asm_lsp = {
@@ -47,6 +59,7 @@ return {
   tailwindcss = {},
 
   arduino_language_server = {
+    root_dir = require('lspconfig.util').root_pattern('sketch.yaml', '*.ino'),
     cmd = {
       'arduino-language-server',
       '-cli',
@@ -58,7 +71,6 @@ return {
       '-fqbn',
       'arduino:avr:uno',
     },
-    root_dir = require('lspconfig.util').root_pattern('sketch.yaml', '*.ino'),
   },
 
   ts_ls = {
