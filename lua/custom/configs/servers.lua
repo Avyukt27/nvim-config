@@ -41,6 +41,7 @@ return {
 
   asm_lsp = {
     command = { 'asm-lsp' },
+    filetypes = { 'asm', 's' },
   },
 
   tailwindcss = {},
@@ -48,16 +49,30 @@ return {
   arduino_language_server = {
     cmd = {
       'arduino-language-server',
-      '--cli',
+      '-cli',
       '/usr/bin/arduino-cli',
-      '--cli-config',
+      '-cli-config',
       os.getenv 'HOME' .. '/.arduino15/arduino-cli.yaml',
-      '--clangd',
-      os.getenv 'HOME' .. '/--clangd',
+      '-clangd',
       os.getenv 'HOME' .. '/.local/share/nvim/mason/bin/clangd',
+      '-fqbn',
+      'arduino:avr:uno',
     },
-    root_dir = function(fname)
-      return vim.lsp.config.util.root_pattern '*.ino' (fname)
-    end,
+    root_dir = require('lspconfig.util').root_pattern('sketch.yaml', '*.ino'),
   },
+
+  ts_ls = {
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+    init_options = {
+      plugins = {
+        {
+          name = '@vue/typescript-plugin',
+          location = vim.fn.stdpath 'data' .. '/mason/packages/vue-language-server/node_modules/@vue/language-server',
+          languages = { 'vue' },
+        },
+      },
+    },
+  },
+
+  vue_ls = {},
 }

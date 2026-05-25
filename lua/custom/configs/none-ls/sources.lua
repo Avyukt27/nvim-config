@@ -16,5 +16,7 @@ return {
   },
   null_ls.builtins.formatting.fprettify,
   null_ls.builtins.formatting.google_java_format,
-  null_ls.builtins.diagnostics.checkstyle.with { extra_args = { '-c', './checkstyle.xml' } },
+  null_ls.builtins.formatting.prettierd.with {
+    filetypes = { 'javascript', 'typescript', 'vue', 'css', 'html', 'json' },
+  },
 }
