@@ -1,5 +1,5 @@
 return {
-  enabled = false,
+  enabled = true,
   sources = {
     explorer = {
       folders = {
@@ -12,6 +12,8 @@ return {
         },
       },
     },
+    gh_issue = {},
+    gh_pr = {},
   },
   hidden = true,
   ignored = true,

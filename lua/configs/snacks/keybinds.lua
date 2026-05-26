@@ -7,25 +7,11 @@ return {
     desc = 'Smart Find Files',
   },
   {
-    '<leader>,',
-    function()
-      Snacks.picker.buffers()
-    end,
-    desc = 'Buffers',
-  },
-  {
     '<leader>/',
     function()
       Snacks.picker.lines()
     end,
     desc = 'Fuzzily search current buffer lines',
-  },
-  {
-    '<leader>n',
-    function()
-      Snacks.picker.notifications()
-    end,
-    desc = 'Notification History',
   },
   {
     '<leader>e',
@@ -34,6 +20,7 @@ return {
     end,
     desc = 'File Explorer',
   },
+  -- Finding
   {
     '<leader>fb',
     function()
@@ -67,15 +54,16 @@ return {
     function()
       Snacks.picker.projects()
     end,
-    desc = 'Projects',
+    desc = 'Find Projects',
   },
   {
     '<leader>fr',
     function()
       Snacks.picker.recent()
     end,
-    desc = 'Recent',
+    desc = 'Find Recent Files',
   },
+  -- Git
   {
     '<leader>gb',
     function()
@@ -125,6 +113,22 @@ return {
     end,
     desc = 'Git Log File',
   },
+  {
+    '<leader>gB',
+    function()
+      Snacks.gitbrowse()
+    end,
+    desc = 'Git Browse',
+    mode = { 'n', 'v' },
+  },
+  {
+    '<leader>gg',
+    function()
+      Snacks.lazygit()
+    end,
+    desc = 'Lazygit',
+  },
+  -- Searching
   {
     '<leader>sb',
     function()
@@ -294,13 +298,15 @@ return {
     end,
     desc = 'Undo History',
   },
+  -- Colourschemes
   {
     '<leader>uC',
     function()
       Snacks.picker.colorschemes()
     end,
-    desc = 'Colorschemes',
+    desc = 'Colourschemes',
   },
+  -- LSP
   {
     'gd',
     function()
@@ -351,6 +357,7 @@ return {
     end,
     desc = 'LSP Workspace Symbols',
   },
+  -- Zen mode
   {
     '<leader>z',
     function()
@@ -365,6 +372,7 @@ return {
     end,
     desc = 'Toggle Zoom',
   },
+  -- Scratch Buffers
   {
     '<leader>.',
     function()
@@ -379,6 +387,23 @@ return {
     end,
     desc = 'Select Scratch Buffer',
   },
+  -- Delete Buffer
+  {
+    '<leader>bd',
+    function()
+      Snacks.bufdelete()
+    end,
+    desc = 'Delete Buffer',
+  },
+  -- Rename File
+  {
+    '<leader>cR',
+    function()
+      Snacks.rename.rename_file()
+    end,
+    desc = 'Rename File',
+  },
+  -- Notifications
   {
     '<leader>n',
     function()
@@ -387,41 +412,13 @@ return {
     desc = 'Notification History',
   },
   {
-    '<leader>bd',
-    function()
-      Snacks.bufdelete()
-    end,
-    desc = 'Delete Buffer',
-  },
-  {
-    '<leader>cR',
-    function()
-      Snacks.rename.rename_file()
-    end,
-    desc = 'Rename File',
-  },
-  {
-    '<leader>gB',
-    function()
-      Snacks.gitbrowse()
-    end,
-    desc = 'Git Browse',
-    mode = { 'n', 'v' },
-  },
-  {
-    '<leader>gg',
-    function()
-      Snacks.lazygit()
-    end,
-    desc = 'Lazygit',
-  },
-  {
     '<leader>un',
     function()
       Snacks.notifier.hide()
     end,
     desc = 'Dismiss All Notifications',
   },
+  -- Terminal
   {
     '<c-\\>',
     function()
@@ -452,22 +449,7 @@ return {
     mode = { 'n', 't' },
     desc = 'Toggle Terminal (fallback)',
   },
-  {
-    ']]',
-    function()
-      Snacks.words.jump(vim.v.count1)
-    end,
-    desc = 'Next Reference',
-    mode = { 'n', 't' },
-  },
-  {
-    '[[',
-    function()
-      Snacks.words.jump(-vim.v.count1)
-    end,
-    desc = 'Prev Reference',
-    mode = { 'n', 't' },
-  },
+  -- News
   {
     '<leader>N',
     desc = 'Neovim News',
@@ -485,5 +467,20 @@ return {
         },
       }
     end,
+  },
+  -- GitHub PRs and Issues
+  {
+    '<leader>ghi',
+    function()
+      Snacks.picker.gh_issue()
+    end,
+    desc = 'Open Issues',
+  },
+  {
+    '<leader>ghp',
+    function()
+      Snacks.picker.gh_pr()
+    end,
+    desc = 'Open PRs',
   },
 }

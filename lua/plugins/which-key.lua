@@ -38,10 +38,15 @@ return {
     },
 
     spec = {
-      { '<leader>s', group = '[S]earch' },
-      { '<leader>t', group = '[T]oggle' },
-      { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-      { '<leader>d', group = '[D]ebug' },
+      { '<leader>b', group = 'Buffer Commands' },
+      { '<leader>d', group = 'Debug' },
+      { '<leader>f', group = 'Find' },
+      { '<leader>g', group = 'Git' },
+      { '<leader>h', group = 'Git Hunk',       mode = { 'n', 'v' } },
+      { '<leader>s', group = 'Search' },
+      { '<leader>t', group = 'Toggle Git' },
+      { '<leader>u', group = 'Toggle Settings' },
+      { '<leader>v', group = 'Python venv' },
     },
   },
 }

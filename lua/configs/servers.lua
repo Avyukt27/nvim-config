@@ -1,9 +1,10 @@
-local capabilities = require('blink-cmp').get_lsp_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
 
 return {
   clangd = {
     capabilities = capabilities,
-    root_dir = require('lspconfig.util').root_pattern 'CMakeLists.txt',
+    root_dir = vim.fs.root(0, 'CMakeLists.txt'),
     cmd = { 'clangd' },
     filetypes = { 'c', 'cpp' },
   },
@@ -22,7 +23,7 @@ return {
 
   basedpyright = {
     capabilities = capabilities,
-    root_dir = require('lspconfig.util').root_pattern('pyproject.toml', '.git'),
+    root_dir = vim.fs.root(0, { 'pyproject.toml', '.git' }),
     settings = {
       basedpyright = {
         analysis = {
@@ -36,7 +37,7 @@ return {
 
   lua_ls = {
     capabilities = capabilities,
-    root_dir = require('lspconfig.util').root_pattern('lua', '.git'),
+    root_dir = vim.fs.root(0, { 'lua', '.git' }),
     settings = {
       Lua = {
         completion = {
@@ -48,7 +49,7 @@ return {
 
   fortls = {
     capabilities = capabilities,
-    root_dir = require('lspconfig.util').root_pattern('fort.ros', '.git'),
+    root_dir = vim.fs.root(0, { 'fort.ros', '.git' }),
   },
 
   asm_lsp = {
@@ -59,7 +60,7 @@ return {
   tailwindcss = {},
 
   arduino_language_server = {
-    root_dir = require('lspconfig.util').root_pattern('sketch.yaml', '*.ino'),
+    root_dir = vim.fs.root(0, { 'sketch.yaml', '*.ino' }),
     cmd = {
       'arduino-language-server',
       '-cli',
