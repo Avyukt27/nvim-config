@@ -6,29 +6,15 @@ return {
   opts = {
     lazygit = { enabled = true },
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
+    dashboard = require 'configs.snacks.dashboard',
     indent = { enabled = false },
     input = { enabled = true },
     notifier = {
       enabled = true,
       timeout = 5000,
     },
-    picker = {
-      enabled = true,
-      sources = {
-        explorer = {
-          layout = {
-            layout = {
-              position = 'right',
-              width = 36,
-            },
-          },
-        },
-      },
-      hidden = true,
-      ignored = true,
-    },
-    explorer = { enabled = true },
+    picker = require 'configs.snacks.picker',
+    explorer = { enabled = false },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = true },
@@ -39,6 +25,7 @@ return {
         wo = { wrap = true },
       },
     },
+    toggle = { enabled = true },
   },
   keys = require 'configs.snacks.keybinds',
   init = function()

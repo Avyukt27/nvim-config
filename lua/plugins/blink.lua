@@ -12,15 +12,25 @@ return {
     keymap = {
       preset = 'default',
     },
-
     appearance = {
       nerd_font_variant = 'mono',
     },
-
     completion = {
-      documentation = { auto_show = true, auto_show_delay_ms = 500 },
+      menu = {
+        border = 'single',
+        draw = {
+          columns = {
+            { 'label',     'label_description', gap = 1 },
+            { 'kind_icon', 'kind',              gap = 1 },
+          },
+        },
+      },
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 200,
+        window = { border = 'single' },
+      },
     },
-
     sources = {
       default = { 'lsp', 'path', 'snippets', 'lazydev', 'vimtex' },
       providers = {
@@ -31,9 +41,11 @@ return {
         },
       },
     },
-
     snippets = { preset = 'luasnip' },
     fuzzy = { implementation = 'lua' },
-    signature = { enabled = true },
+    signature = {
+      enabled = true,
+      window = { border = 'single' },
+    },
   },
 }

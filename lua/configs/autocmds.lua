@@ -3,6 +3,14 @@ local capabilities = require('blink-cmp').get_lsp_capabilities()
 
 local myAugrp = vim.api.nvim_create_augroup('myAutocmds', { clear = true })
 
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  callback = function()
+    vim.hl.on_yank()
+  end,
+})
+
 vim.api.nvim_create_autocmd('BufWritePre', {
   group = myAugrp,
   pattern = '*.rs',
@@ -13,7 +21,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 
 vim.api.nvim_create_autocmd('FileType', {
   group = myAugrp,
-  pattern = 'vue',
+  pattern = '*.vue',
   callback = function(args)
     local root_dir = vim.fs.root(args.buf, { 'package.json', 'tsconfig.json', 'jsconfig.json' })
     local init_options = vim.deepcopy(servers.ts_ls.init_options)
@@ -33,12 +41,21 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  group = myAugrp,
-  pattern = require 'configs.treesitter-langs',
+  pattern = '*',
   callback = function(args)
-    local lang = vim.treesitter.language.get_lang(args.match)
-    if lang then
-      pcall(vim.treesitter.start, args.buf)
+    local buf = args.buf
+    local ft = vim.bo[buf].filetype
+
+    local lang = vim.treesitter.language.get_lang(ft)
+    if not lang then
+      return
     end
+
+    local ok_add = pcall(vim.treesitter.language.add, lang)
+    if not ok_add then
+      return
+    end
+
+    pcall(vim.treesitter.start, buf, lang)
   end,
 })

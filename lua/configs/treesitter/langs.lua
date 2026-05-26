@@ -10,7 +10,7 @@ return {
   'markdown_inline',
   'query',
   'vim',
-  'help',
+  'vimdoc',
   'tex',
   'rust',
   'typescript',
